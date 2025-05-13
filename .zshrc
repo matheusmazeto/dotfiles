@@ -63,6 +63,23 @@ alias ls='ls --color'
 alias vim='nvim'
 alias c='clear'
 
+# Git Aliases
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gcm='git commit -m'
+alias gco='git checkout'
+alias gb='git branch'
+alias gcb='git checkout -b'
+alias gl='git log --oneline --graph --decorate'
+alias gp='git push'
+alias gpl='git pull'
+alias gst='git stash'
+alias gsta='git stash apply'
+alias gcl='git clone'
+alias grs='git reset --soft HEAD~1'
+alias grh='git reset --hard'
+
 ####################################################################
 
 # NVM
