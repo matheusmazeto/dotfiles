@@ -15,3 +15,12 @@ stow .
 ```shell
 chmod +x ~/dotfiles/bootstrap.sh
 ```
+
+```shell
+git clone https://github.com/matheusmazeto/dotfiles ~/dotfiles
+bash ~/dotfiles/bootstrap.sh
+```
+
+```shell
+bash -lc 'git clone https://github.com/matheusmazeto/dotfiles ~/dotfiles && bash ~/dotfiles/bootstrap.sh'
+```
