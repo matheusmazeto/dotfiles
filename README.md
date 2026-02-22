@@ -19,8 +19,15 @@ chmod +x ~/dotfiles/bootstrap.sh
 ```shell
 git clone https://github.com/matheusmazeto/dotfiles ~/dotfiles
 bash ~/dotfiles/bootstrap.sh
+cd ~/dotfiles
+brew bundle
 ```
 
 ```shell
 bash -lc 'git clone https://github.com/matheusmazeto/dotfiles ~/dotfiles && bash ~/dotfiles/bootstrap.sh'
+```
+
+```shell
+cd ~/dotfiles
+brew bundle
 ```
