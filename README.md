@@ -11,3 +11,7 @@ cd ~/dotfiles
 ```shell
 stow .
 ```
+
+```shell
+chmod +x ~/dotfiles/bootstrap.sh
+```
