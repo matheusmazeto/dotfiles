@@ -1,0 +1,18 @@
+tap "oven-sh/bun"
+tap "homebrew/cask-fonts"
+
+brew "bun"
+brew "stow"
+brew "fzf"
+brew "git"
+brew "nvm"
+brew "starship"
+brew "zoxide"
+
+cask "alacritty"
+cask "visual-studio-code"
+cask "raycast"
+cask "rectangle"
+cask "font-jetbrains-mono-nerd-font"
+cask "discord"
+cask "bitwarden"
