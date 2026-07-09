@@ -22,6 +22,14 @@ in
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
 
+  programs.git = {
+    enable = true;
+    settings.user = {
+      name = "Matheus Mazeto";
+      email = "mgmazeto@gmail.com";
+    };
+  };
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;      # ghost text from history
@@ -35,8 +43,10 @@ in
       push = "git push";
       pull = "git pull";
       m = "git switch main";
-      cc = "claude --dangerously-skip-permissions";
-      co = "codex --full-auto";
+      cc = "claude";
+      ccf = "claude --dangerously-skip-permissions";
+      co = "codex";
+      cof = "codex --full-auto";
     };
   };
 
