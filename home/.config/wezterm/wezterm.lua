@@ -1,6 +1,19 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 
 local config = wezterm.config_builder()
+
+wezterm.on("gui-startup", function(cmd)
+  local _, _, window = mux.spawn_window(cmd or {})
+  local gui_window = window:gui_window()
+  local screen = wezterm.gui.screens().active
+  local dimensions = gui_window:get_dimensions()
+
+  gui_window:set_position(
+    screen.x + (screen.width - dimensions.pixel_width) / 2,
+    screen.y + (screen.height - dimensions.pixel_height) / 2
+  )
+end)
 
 config.color_scheme = "rose-pine-moon"
 config.font = wezterm.font("Hack Nerd Font")
