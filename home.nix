@@ -16,11 +16,14 @@ in
     jq        # json on the command line
     lazygit
     neovim
+    bun
+    pnpm
     # the font everything renders in
     nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
   home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables.NVM_DIR = "${config.home.homeDirectory}/.nvm";
 
   programs.git = {
     enable = true;
@@ -36,6 +39,11 @@ in
     syntaxHighlighting.enable = true;  # commands turn green when valid
     initContent = ''
       bindkey '^f' autosuggest-accept
+
+      export NVM_DIR="$HOME/.nvm"
+      if [ -s /opt/homebrew/opt/nvm/nvm.sh ]; then
+        . /opt/homebrew/opt/nvm/nvm.sh
+      fi
     '';
     shellAliases = {
       ".." = "cd ..";
@@ -50,16 +58,56 @@ in
     };
   };
 
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+
+    settings = {
+      style = "compact";
+      inline_height = 20;
+      enter_accept = false;
+      filter_mode = "directory";
+    };
+  };
+
+  programs.vscode = {
+    enable = true;
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        mhutchie.git-graph
+        eamodio.gitlens
+      ];
+    };
+  };
+
   programs.starship = {
     enable = true;
     settings = {
+      command_timeout = 1000;
       add_newline = false;
-      format = "$directory$git_branch$git_status$cmd_duration$line_break$character";
+      format = "$directory$git_branch$git_state$git_status$cmd_duration$line_break$character";
+
+      directory.style = "blue";
+
       character = {
         success_symbol = "[❯](purple)";
         error_symbol = "[❯](red)";
+        vimcmd_symbol = "[❮](green)";
       };
-      cmd_duration.format = "[$duration]($style) ";
+
+      git_status = {
+        style = "cyan";
+        stashed = "≡";
+      };
+
+      git_state = {
+        style = "bright-black";
+      };
+
+      cmd_duration = {
+        format = "[$duration]($style) ";
+        style = "yellow";
+      };
     };
   };
 

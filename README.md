@@ -76,8 +76,122 @@ Edit the config files in place, then apply:
 ./rebuild.sh
 ```
 
-That's it.
-No separate build-and-copy step.
+The equivalent command, useful when running the rebuild directly, is:
+
+```sh
+sudo darwin-rebuild switch --flake ~/.dotfiles#mac
+```
+
+The `#mac` suffix matters. It selects the `mac` configuration declared in
+`flake.nix`; without it, `darwin-rebuild` may try to use the computer's
+hostname as the configuration name.
+
+After a rebuild, open a new terminal so the shell configuration is loaded.
+
+## Node.js, nvm, pnpm, and Bun
+
+This setup uses two different package managers for two different jobs:
+
+- Homebrew installs `nvm`.
+- `nvm` installs and selects the latest Node.js LTS release.
+- Nix installs `pnpm` and `bun` as user packages.
+- Zsh loads nvm automatically from `/opt/homebrew/opt/nvm/nvm.sh`.
+
+The nvm setup runs during the system activation step, after Homebrew has
+installed the `nvm` formula. This is important because Home Manager alone can
+run before Homebrew has finished installing it.
+
+To apply the setup:
+
+```sh
+sudo darwin-rebuild switch --flake ~/.dotfiles#mac
+```
+
+Then verify the result in a new terminal:
+
+```sh
+nvm current
+node --version
+pnpm --version
+bun --version
+```
+
+The expected Node version is the current LTS line, not necessarily the latest
+current release. To inspect installed Node versions:
+
+```sh
+nvm ls
+```
+
+To manually select the LTS version:
+
+```sh
+source /opt/homebrew/opt/nvm/nvm.sh
+nvm install --lts
+nvm alias default "lts/*"
+nvm use default
+```
+
+If an old `stable` alias was created previously, remove it with:
+
+```sh
+nvm unalias stable
+nvm alias node "lts/*"
+nvm alias default "lts/*"
+nvm use default
+```
+
+The quotes around `lts/*` are required in Zsh so the `*` is passed to nvm
+instead of being interpreted as a filesystem wildcard.
+
+## Atuin
+
+Atuin is enabled through Home Manager with Zsh integration:
+
+- compact history interface;
+- 20 lines of inline history results;
+- Enter selects the result without immediately accepting it;
+- history filtering is scoped to the current directory.
+
+Its configuration lives in `home.nix` under `programs.atuin`. It does not need
+to be added manually to `home.packages`.
+
+## Starship
+
+Starship is enabled through Home Manager and loaded by Zsh. The prompt shows:
+
+- the current directory;
+- Git branch, state, and working tree status;
+- stash information;
+- command duration;
+- different prompt symbols for success, errors, and Vim command mode.
+
+Its configuration lives in `home.nix` under `programs.starship`.
+
+## Troubleshooting
+
+If the flake cannot find the configuration, make sure the command includes the
+host label:
+
+```sh
+sudo darwin-rebuild switch --flake ~/.dotfiles#mac
+```
+
+If `nvm` is not available in the current shell, load it manually:
+
+```sh
+source /opt/homebrew/opt/nvm/nvm.sh
+```
+
+If Node is still pointing to the old `stable` alias, reset the aliases:
+
+```sh
+nvm install --lts
+nvm alias default "lts/*"
+nvm alias node "lts/*"
+nvm unalias stable
+nvm use default
+```
 
 ## Make it yours
 
