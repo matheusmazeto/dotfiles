@@ -15,6 +15,7 @@
     '';
     shellAliases = {
       ".." = "cd ..";
+      v = "nvim";
       add = "git add .";
       push = "git push";
       pull = "git pull";
