@@ -2,6 +2,20 @@
 
 Configuração pessoal do macOS com Nix, nix-darwin, Home Manager e Homebrew.
 
+## Organização
+
+As configurações são separadas em dois contextos:
+
+- `modules/darwin/` contém configurações do sistema aplicadas pelo nix-darwin,
+  como opções do macOS, Homebrew, aplicativos, usuários e scripts de ativação.
+- `modules/home/` contém configurações do usuário aplicadas pelo Home Manager,
+  como pacotes de terminal, Git, SSH, Zsh, Starship, uv e links para os
+  dotfiles.
+
+Em resumo, `darwin` configura o Mac e `home` configura o ambiente do usuário.
+Os arquivos `configuration.nix` e `home.nix` são os pontos de entrada que
+importam esses módulos.
+
 ## Instalação em um Mac novo
 
 Requisitos:
@@ -45,6 +59,9 @@ cd ~/Documents/github/dotfiles
 
 O script instala o Determinate Nix, cria `~/.dotfiles`, confirma o usuário do
 macOS e aplica a configuração. Autorize o uso de `sudo` quando solicitado.
+
+O rebuild remove pacotes e aplicativos do Homebrew que não estejam declarados
+em `modules/darwin/homebrew.nix`.
 
 Se o bootstrap falhar durante a instalação do Nix, consulte
 [Troubleshooting do bootstrap](#troubleshooting-do-bootstrap).
