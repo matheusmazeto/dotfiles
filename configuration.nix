@@ -50,7 +50,19 @@ in
         };
       };
     };
-    dock.autohide = false;
+    dock = {
+      autohide = false;
+      persistent-apps = [
+        "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
+        "/System/Applications/Calendar.app"
+        "/System/Applications/Notes.app"
+        "/System/Applications/App Store.app"
+        "/Applications/Google Chrome.app"
+        "/Applications/WezTerm.app"
+        "/Applications/Visual Studio Code.app"
+        "/Applications/ChatGPT.app"
+      ];
+    };
     finder.FXPreferredViewStyle = "Nlsv";  # list view by default
     finder.CreateDesktop = false;          # clean desktop
     screencapture.target = "clipboard";    # save screenshots to clipboard
@@ -126,7 +138,7 @@ in
       "visual-studio-code"
       "claude-code"
       "google-chrome"
-      "codex-app"
+      "chatgpt"
       "bitwarden"
       "raycast"
     ];

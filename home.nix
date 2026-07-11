@@ -18,18 +18,39 @@ in
     neovim
     bun
     pnpm
+    uv
     # the font everything renders in
     nerd-fonts.hack
   ];
   fonts.fontconfig.enable = true;
-  home.sessionVariables.EDITOR = "nvim";
-  home.sessionVariables.NVM_DIR = "${config.home.homeDirectory}/.nvm";
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    NVM_DIR = "${config.home.homeDirectory}/.nvm";
+    # Keep project Python environments independent from Apple's system Python.
+    UV_PYTHON_PREFERENCE = "only-managed";
+  };
+  # Make uv-managed Python executables available directly in the shell.
+  home.sessionPath = [ "${config.home.homeDirectory}/.local/bin" ];
 
   programs.git = {
     enable = true;
     settings.user = {
       name = "Matheus Mazeto";
       email = "mgmazeto@gmail.com";
+    };
+  };
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+
+    settings."github.com" = {
+      HostName = "github.com";
+      User = "git";
+      IdentityFile = "~/.ssh/id_ed25519";
+      IdentitiesOnly = true;
+      AddKeysToAgent = "yes";
+      UseKeychain = "yes";
     };
   };
 
