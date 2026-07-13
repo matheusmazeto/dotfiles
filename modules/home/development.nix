@@ -56,6 +56,7 @@
       extensions = with pkgs.vscode-extensions; [
         mhutchie.git-graph
         eamodio.gitlens
+        ms-python.python
       ];
     };
   };
