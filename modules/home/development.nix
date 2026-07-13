@@ -57,6 +57,7 @@
         mhutchie.git-graph
         eamodio.gitlens
         ms-python.python
+        ms-toolsai.jupyter
       ];
     };
   };
