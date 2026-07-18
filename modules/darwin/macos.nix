@@ -37,6 +37,7 @@
         "/System/Applications/Calendar.app"
         "/System/Applications/Notes.app"
         "/System/Applications/App Store.app"
+        "/System/Applications/System Settings.app"
         "/Applications/Google Chrome.app"
         "/Applications/WezTerm.app"
         "/Applications/Visual Studio Code.app"
