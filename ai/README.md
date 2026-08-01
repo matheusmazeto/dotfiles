@@ -37,5 +37,5 @@ As configurações específicas mantêm os caminhos esperados por cada ferrament
 dentro de `home/`:
 
 - `home/.claude/settings.json` contém as preferências do Claude Code;
-- `home/.codex/config.toml` é o ponto de entrada para opções exclusivas do Codex;
+- A configuração existente em `~/.codex/config.toml` permanece sob controle do próprio Codex;
 - `home/.config/opencode/opencode.json` é o ponto de entrada para opções exclusivas do OpenCode.
