@@ -13,6 +13,24 @@
     bun
     pnpm
     uv
+    ruff
+    ty
+    basedpyright
+    rust-analyzer
+    rustfmt
+    clippy
+    nixd
+    nixfmt-rfc-style
+    shellcheck
+    shfmt
+    lua-language-server
+    stylua
+    marksman
+    vtsls
+    vscode-langservers-extracted
+    prettier
+    astro-language-server
+    tailwindcss-language-server
     # the font everything renders in
     nerd-fonts.hack
   ];

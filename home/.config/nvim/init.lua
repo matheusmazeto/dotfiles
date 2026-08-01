@@ -1,3 +1,4 @@
-require('vim_config')
+require('config.options')
+require('config.keymaps')
+require('config.autocmds')
 require('plugin')
-require('keys')
