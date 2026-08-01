@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neovim Cheat Sheet</title>
+<style>
+:root{color-scheme:dark;--bg:#191724;--surface:#211f2f;--surface2:#2a273f;--border:#403b5b;--text:#e0def4;--muted:#908caa;--pine:#9ccfd8;--foam:#c4a7e7;--gold:#f6c177;--rose:#ebbcba;--shadow:0 16px 42px #0003}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--pine);text-decoration:none}a:hover{color:var(--foam)}kbd,code{border:1px solid var(--border);border-radius:6px;background:#171522;color:var(--gold);font:.9em ui-monospace,SFMono-Regular,Menlo,monospace;padding:.16em .42em}code{color:var(--pine)}
+.shell{display:grid;grid-template-columns:245px minmax(0,1fr);min-height:100vh}aside{position:sticky;top:0;height:100vh;padding:28px 20px;border-right:1px solid var(--border);background:#1d1b2b}.brand{margin-bottom:28px}.brand small{color:var(--muted);text-transform:uppercase;letter-spacing:.14em}.brand h1{margin:6px 0;font-size:1.35rem}nav{display:grid;gap:5px}nav a{padding:9px 10px;border-radius:8px;color:var(--muted);transition:background .18s,color .18s,transform .18s}nav a:hover,nav a:focus-visible{background:var(--surface2);color:var(--text);outline:0;transform:translateX(2px)}nav a.active{background:#393552;color:var(--text);box-shadow:inset 3px 0 var(--pine)}.hint{position:absolute;bottom:22px;color:var(--muted);font-size:.8rem}
+main{width:min(1180px,100%);padding:46px clamp(24px,5vw,76px) 80px}header{max-width:920px;margin-bottom:30px}.hero{padding:34px 36px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(135deg,#211f2f 0%,#26233a 100%);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"⌨";position:absolute;right:34px;bottom:-22px;color:#ffffff0b;font-size:10rem;line-height:1}.eyebrow{color:var(--foam);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1,h2,h3{line-height:1.2}h1{margin:10px 0 12px;font-size:clamp(2rem,4vw,3.3rem)}h2{margin:0 0 16px;font-size:1.45rem}h3{margin:0 0 10px;font-size:1rem;color:var(--pine)}.lead{color:var(--muted);font-size:1.05rem;margin:0;max-width:700px}.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.pill{border:1px solid #ffffff14;border-radius:999px;background:#17152299;color:var(--muted);padding:5px 10px;font-size:.8rem}.toolbar{margin:18px 0 34px;position:relative;z-index:1}input{width:min(560px,100%);border:1px solid var(--border);border-radius:9px;background:#171522;color:var(--text);padding:12px 14px;outline:0}input:focus{border-color:var(--pine);box-shadow:0 0 0 3px #9ccfd824}.section{scroll-margin-top:24px;margin:54px 0}.section-title{display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--border);padding-bottom:10px}.section-title h2:before{content:"";display:inline-block;width:7px;height:7px;margin:0 9px 3px 0;border-radius:50%;background:var(--foam);box-shadow:0 0 0 4px #c4a7e71c}.section-title span{color:var(--muted);font-size:.85rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:14px}.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:var(--shadow);transition:transform .18s,border-color .18s,background .18s}.card:hover{transform:translateY(-2px);border-color:#6e6a86;background:#252237}.card p{margin:0 0 12px;color:var(--muted)}.keys{display:flex;flex-wrap:wrap;gap:7px}.keys kbd{box-shadow:0 2px 0 #0005}.command{margin:8px 0;padding:10px 12px;border-left:3px solid var(--foam);background:#1a1825;border-radius:0 7px 7px 0}pre{overflow-x:auto;margin:10px 0 0;padding:13px;border:1px solid var(--border);border-radius:8px;background:#171522;color:var(--text)}pre code{border:0;background:transparent;padding:0;color:inherit}ul{margin:8px 0 0;padding-left:20px;color:var(--muted)}.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.flow div{padding:15px;background:var(--surface);border:1px solid var(--border);border-radius:10px}.flow strong{display:block;color:var(--gold);margin-bottom:7px}footer{padding-top:24px;border-top:1px solid var(--border);color:var(--muted)}.hidden{display:none}.empty{display:none;padding:24px;color:var(--muted);text-align:center}.empty.visible{display:block}
+@media(max-width:800px){.shell{display:block}aside{position:static;height:auto;border-right:0;border-bottom:1px solid var(--border)}nav{display:flex;overflow-x:auto;padding-bottom:4px}nav a{white-space:nowrap}.hint{display:none}main{padding-top:32px}}
+</style>
+</head>
+<body>
+<div class="shell"><aside><div class="brand"><small>dotfiles</small><h1>Neovim cheat sheet</h1></div><nav aria-label="Sections"><a href="#start">Começar</a><a href="#files">Arquivos</a><a href="#move">Navegação</a><a href="#edit">Edição</a><a href="#windows">Janelas</a><a href="#lsp">LSP</a><a href="#git">Git</a><a href="#terminal">Terminal</a><a href="#tests">Testes</a></nav><div class="hint">Pressione <kbd>Espaço</kbd> no Neovim.</div></aside>
+<main><header id="start"><div class="hero"><div class="eyebrow">Fluxo diário · Rose Pine</div><h1>Neovim no teclado</h1><p class="lead">Referência rápida para abrir projetos, navegar, editar, usar LSP, trabalhar com Git e rodar testes.</p><div class="hero-meta"><span class="pill">⌘ Espaço · atalhos</span><span class="pill">Esc · salvar e formatar</span><span class="pill">⌘ g · Git</span></div></div><div class="toolbar"><input id="search" type="search" placeholder="Buscar comando ou ação..." aria-label="Buscar no cheat sheet"></div></header>
+<section class="section searchable" id="files"><div class="section-title"><h2>Abrir e encontrar arquivos</h2><span>Seu Command + P</span></div><div class="grid"><article class="card"><h3>Encontrar arquivo</h3><p>Busca fuzzy no projeto.</p><div class="keys"><kbd>Espaço</kbd><kbd>f</kbd></div></article><article class="card"><h3>Buscar texto</h3><p>Procura conteúdo no projeto.</p><div class="keys"><kbd>Espaço</kbd><kbd>s</kbd></div></article><article class="card"><h3>Árvore de arquivos</h3><p>Abre o Oil.</p><div class="keys"><kbd>Espaço</kbd><kbd>e</kbd></div><ul><li><kbd>j</kbd>/<kbd>k</kbd> mover</li><li><kbd>Enter</kbd> abrir</li><li><kbd>-</kbd> voltar</li><li><kbd>q</kbd> fechar</li></ul></article><article class="card"><h3>Buffers</h3><p>Lista arquivos abertos.</p><div class="keys"><kbd>Espaço</kbd><kbd>b</kbd></div></article></div></section>
+<section class="section searchable" id="move"><div class="section-title"><h2>Navegar no arquivo</h2><span>Modo normal</span></div><div class="grid"><article class="card"><h3>Movimento</h3><div class="command"><kbd>h</kbd> esquerda · <kbd>j</kbd> baixo · <kbd>k</kbd> cima · <kbd>l</kbd> direita</div><div class="command"><kbd>w</kbd> próxima palavra · <kbd>b</kbd> anterior</div></article><article class="card"><h3>Linha e arquivo</h3><div class="command"><kbd>0</kbd> início · <kbd>$</kbd> fim da linha</div><div class="command"><kbd>gg</kbd> início · <kbd>G</kbd> fim</div><div class="command"><kbd>50%</kbd> metade do arquivo</div></article><article class="card"><h3>Scroll</h3><div class="command"><kbd>Ctrl-d</kbd> meia tela abaixo</div><div class="command"><kbd>Ctrl-u</kbd> meia tela acima</div><div class="command"><kbd>zz</kbd> centralizar cursor</div></article></div></section>
+<section class="section searchable" id="edit"><div class="section-title"><h2>Editar e salvar</h2><span>Esc volta ao normal</span></div><div class="grid"><article class="card"><h3>Editar</h3><div class="keys"><kbd>i</kbd> antes <kbd>a</kbd> depois <kbd>o</kbd> abaixo <kbd>O</kbd> acima</div></article><article class="card"><h3>Selecionar</h3><div class="keys"><kbd>v</kbd> caracteres <kbd>V</kbd> linhas <kbd>Ctrl-v</kbd> bloco</div><p><kbd>y</kbd> copiar · <kbd>d</kbd> apagar · <kbd>c</kbd> substituir</p></article><article class="card"><h3>Copiar e desfazer</h3><div class="command"><kbd>yy</kbd> copiar linha · <kbd>p</kbd> colar</div><div class="command"><kbd>u</kbd> desfazer · <kbd>Ctrl-r</kbd> refazer</div></article><article class="card"><h3>Salvar e sair</h3><p><kbd>Esc</kbd> formata e salva na sua configuração.</p><div class="command"><code>:w</code> salvar · <code>:q</code> sair</div><div class="command"><code>:wq</code> salvar e sair · <code>:q!</code> sem salvar</div></article></div></section>
+<section class="section searchable" id="windows"><div class="section-title"><h2>Janelas, tabs e terminal</h2><span>Ctrl-w controla janelas</span></div><div class="grid"><article class="card"><h3>Splits</h3><pre><code>:vsplit arquivo<br>:split arquivo</code></pre><ul><li><kbd>Ctrl-w h/j/k/l</kbd> navegar</li><li><kbd>Ctrl-w q</kbd> fechar</li><li><kbd>Ctrl-w =</kbd> igualar</li></ul></article><article class="card"><h3>Tabs</h3><pre><code>:tabnew<br>:tabedit caminho/arquivo</code></pre><ul><li><kbd>gt</kbd> próxima</li><li><kbd>gT</kbd> anterior</li><li><kbd>:tabclose</kbd> fechar</li></ul></article><article class="card"><h3>Terminal</h3><p>Abra com:</p><pre><code>:terminal</code></pre><p>Volte ao modo normal:</p><div class="keys"><kbd>Ctrl-\</kbd><kbd>Ctrl-n</kbd></div></article></div></section>
+<section class="section searchable" id="lsp"><div class="section-title"><h2>LSP, autocomplete e formatação</h2><span>Python, frontend, Rust e Nix</span></div><div class="grid"><article class="card"><h3>Navegação</h3><div class="command"><kbd>gd</kbd> definição</div><div class="command"><kbd>grr</kbd> referências</div><div class="command"><kbd>K</kbd> documentação</div><div class="command"><kbd>gri</kbd> implementação</div></article><article class="card"><h3>Ações</h3><div class="command"><kbd>Espaço</kbd><kbd>rn</kbd> renomear</div><div class="command"><kbd>Espaço</kbd><kbd>ca</kbd> ação de código</div><div class="command"><kbd>[d</kbd>/<kbd>]d</kbd> diagnóstico</div></article><article class="card"><h3>Formatar</h3><p>Formata ao salvar.</p><div class="keys"><kbd>Esc</kbd> salvar e formatar</div><div class="keys"><kbd>Espaço</kbd><kbd>cf</kbd> formatar agora</div></article></div></section>
+<section class="section searchable" id="git"><div class="section-title"><h2>Git</h2><span>Neogit + Gitsigns</span></div><div class="grid"><article class="card"><h3>Abrir Neogit</h3><div class="keys"><kbd>Espaço</kbd><kbd>g</kbd></div><ul><li><kbd>s</kbd> stage</li><li><kbd>u</kbd> unstage</li><li><kbd>x</kbd> descartar</li><li><kbd>c</kbd> commit</li><li><kbd>P</kbd> push</li><li><kbd>F</kbd> pull</li><li><kbd>Tab</kbd> detalhes</li></ul></article><article class="card"><h3>Diffs</h3><pre><code>:Gitsigns preview_hunk<br>:DiffviewOpen<br>:DiffviewClose</code></pre><p><code>+</code> nova · <code>~</code> modificada · <code>_</code> removida.</p></article><article class="card"><h3>Fluxo de commit</h3><pre><code>Espaço + g<br>s<br>c<br>:wq<br>P</code></pre><p><code>refactor(nvim): organize configuration by language</code></p></article></div></section>
+<section class="section searchable" id="terminal"><div class="section-title"><h2>Terminal e comandos</h2><span>Terminal normal ou <code>:terminal</code></span></div><div class="grid"><article class="card"><h3>Python</h3><pre><code>uv run pytest<br>uv run ruff check .<br>uv run ruff format .</code></pre></article><article class="card"><h3>Node / frontend</h3><pre><code>pnpm vitest<br>pnpm playwright test<br>pnpm lint</code></pre></article><article class="card"><h3>Rust</h3><pre><code>cargo test<br>cargo clippy<br>cargo fmt</code></pre></article></div></section>
+<section class="section searchable" id="tests"><div class="section-title"><h2>Fluxo diário</h2><span>Do terminal ao push</span></div><div class="flow"><div><strong>01</strong>Entrar na pasta</div><div><strong>02</strong>Executar <code>nvim</code></div><div><strong>03</strong>Abrir com <kbd>Espaço+f</kbd></div><div><strong>04</strong>Editar e usar <kbd>Esc</kbd></div><div><strong>05</strong>Rodar testes</div><div><strong>06</strong>Revisar com <kbd>Espaço+g</kbd></div><div><strong>07</strong>Stage e commit</div><div><strong>08</strong><kbd>P</kbd> para push</div></div></section>
+<footer>Pressione <kbd>Espaço</kbd> dentro do Neovim para abrir o Which-Key.</footer></main></div>
+<script>
+const input = document.querySelector('#search');
+const sections = [...document.querySelectorAll('.searchable')];
+const links = [...document.querySelectorAll('nav a')];
+
+function filterCheatSheet() {
+  const query = input.value.trim().toLowerCase();
+  let matches = 0;
+
+  sections.forEach(section => {
+    const cards = [...section.querySelectorAll('.card')];
+    let sectionMatches = 0;
+
+    cards.forEach(card => {
+      const isMatch = !query || card.textContent.toLowerCase().includes(query);
+      card.classList.toggle('hidden', !isMatch);
+      if (isMatch) sectionMatches++;
+    });
+
+    const sectionMatch = cards.length
+      ? sectionMatches > 0
+      : section.textContent.toLowerCase().includes(query);
+    section.classList.toggle('hidden', query !== '' && !sectionMatch);
+    matches += sectionMatches;
+  });
+
+  let empty = document.querySelector('.empty');
+  if (!empty) {
+    empty = document.createElement('p');
+    empty.className = 'empty';
+    empty.textContent = 'Nenhum comando encontrado. Tente outro termo.';
+    input.closest('.toolbar').after(empty);
+  }
+  empty.classList.toggle('visible', query !== '' && matches === 0);
+}
+
+input.addEventListener('input', filterCheatSheet);
+
+const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+  if (entry.isIntersecting && !input.value) {
+    links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+  }
+}), { rootMargin: '-20% 0px -70%' });
+sections.forEach(section => observer.observe(section));
+</script>
+</body></html>
