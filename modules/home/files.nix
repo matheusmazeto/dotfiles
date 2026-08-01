@@ -15,6 +15,10 @@ in
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/herdr";
   home.file.".claude/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
+  home.file.".codex/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.codex/config.toml";
+  home.file.".config/opencode/opencode.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.config/opencode/opencode.json";
 
   # Shared AI instructions. Claude Code expects CLAUDE.md, while Codex and
   # OpenCode expect AGENTS.md, so all three links point to the same source.
