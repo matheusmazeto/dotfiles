@@ -6,6 +6,7 @@
     ripgrep   # fast search
     fd        # fast find
     fzf       # fuzzy finder
+    zoxide    # frecency-based directory navigation
     jq        # json on the command line
     lazygit
     neovim
@@ -17,6 +18,11 @@
   ];
 
   fonts.fontconfig.enable = true;
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";
