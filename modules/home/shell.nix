@@ -12,12 +12,15 @@
       if [ -s /opt/homebrew/opt/nvm/nvm.sh ]; then
         . /opt/homebrew/opt/nvm/nvm.sh
       fi
+
+      rebuild() {
+        ~/.dotfiles/rebuild.sh && exec zsh
+      }
     '';
     shellAliases = {
       ".." = "cd .."; # Move to the parent directory.
       v = "nvim"; # Open Neovim.
       h = "herdr"; # Open Herdr.
-      rebuild = "~/.dotfiles/rebuild.sh"; # Rebuild the nix-darwin and Home Manager configuration.
       q = "exit"; # Exit the current shell.
       cc = "claude"; # Start Claude Code with normal permission checks.
       ccf = "claude --dangerously-skip-permissions"; # Start Claude Code while bypassing permission checks.
