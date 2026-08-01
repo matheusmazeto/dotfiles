@@ -14,19 +14,19 @@
       fi
     '';
     shellAliases = {
-      ".." = "cd ..";
-      v = "nvim";
-      h = "herdr";
-      rebuild = "~/.dotfiles/rebuild.sh";
-      q = "exit";
-      add = "git add .";
-      push = "git push";
-      pull = "git pull";
-      m = "git switch main";
-      cc = "claude";
-      ccf = "claude --dangerously-skip-permissions";
-      co = "codex";
-      cof = "codex --full-auto";
+      ".." = "cd .."; # Move to the parent directory.
+      v = "nvim"; # Open Neovim.
+      h = "herdr"; # Open Herdr.
+      rebuild = "~/.dotfiles/rebuild.sh"; # Rebuild the nix-darwin and Home Manager configuration.
+      q = "exit"; # Exit the current shell.
+      add = "git add ."; # Stage all changes in the current repository.
+      push = "git push"; # Push the current branch to its configured remote.
+      pull = "git pull"; # Pull and integrate changes from the configured remote.
+      m = "git switch main"; # Switch to the main branch.
+      cc = "claude"; # Start Claude Code with normal permission checks.
+      ccf = "claude --dangerously-skip-permissions"; # Start Claude Code while bypassing permission checks.
+      co = "codex"; # Start Codex with normal permission checks.
+      cof = "codex --full-auto"; # Start Codex in full-auto mode with reduced approval barriers.
     };
   };
 
