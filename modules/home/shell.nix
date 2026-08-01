@@ -13,6 +13,7 @@
         . /opt/homebrew/opt/nvm/nvm.sh
       fi
 
+      unalias rebuild 2>/dev/null || true
       rebuild() {
         ~/.dotfiles/rebuild.sh && exec zsh
       }
