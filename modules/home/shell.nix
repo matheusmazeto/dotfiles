@@ -18,6 +18,7 @@
       v = "nvim";
       h = "herdr";
       rebuild = "~/.dotfiles/rebuild.sh";
+      q = "exit";
       add = "git add .";
       push = "git push";
       pull = "git pull";
