@@ -50,42 +50,4 @@
     trackpad.Clicking = true;              # tap to click
   };
 
-  # Swap the physical Control and Command keys on both sides of the keyboard.
-  #
-  # The HID usage codes map:
-  #   Left Control  (0x7000000E0) <-> Left Command  (0x7000000E3)
-  #   Right Control (0x7000000E4) <-> Right Command (0x7000000E7)
-  #
-  # hidutil mappings are cleared after a reboot, so this per-user LaunchAgent
-  # reapplies them automatically at login.
-  launchd.user.agents.swap-control-command.serviceConfig = {
-    ProgramArguments = [
-      "/usr/bin/hidutil"
-      "property"
-      "--set"
-      ''
-        {
-          "UserKeyMapping": [
-            {
-              "HIDKeyboardModifierMappingSrc": 30064771296,
-              "HIDKeyboardModifierMappingDst": 30064771299
-            },
-            {
-              "HIDKeyboardModifierMappingSrc": 30064771299,
-              "HIDKeyboardModifierMappingDst": 30064771296
-            },
-            {
-              "HIDKeyboardModifierMappingSrc": 30064771300,
-              "HIDKeyboardModifierMappingDst": 30064771303
-            },
-            {
-              "HIDKeyboardModifierMappingSrc": 30064771303,
-              "HIDKeyboardModifierMappingDst": 30064771300
-            }
-          ]
-        }
-      ''
-    ];
-    RunAtLoad = true;
-  };
 }
