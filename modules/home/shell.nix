@@ -16,6 +16,8 @@
     shellAliases = {
       ".." = "cd ..";
       v = "nvim";
+      h = "herdr";
+      rebuild = "~/.dotfiles/rebuild.sh";
       add = "git add .";
       push = "git push";
       pull = "git pull";
