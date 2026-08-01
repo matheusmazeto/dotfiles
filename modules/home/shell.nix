@@ -13,8 +13,12 @@
         . /opt/homebrew/opt/nvm/nvm.sh
       fi
 
+      # Remove the legacy alias before defining rebuild as a shell function.
       unalias rebuild 2>/dev/null || true
+
+      # Rebuild the system and restart the current shell only after success.
       rebuild() {
+        # exec replaces this shell so the updated Zsh configuration is loaded once.
         ~/.dotfiles/rebuild.sh && exec zsh
       }
     '';

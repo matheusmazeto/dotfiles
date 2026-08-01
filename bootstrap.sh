@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Takes a fresh Mac from nothing to a built nix-darwin config.
-# Run this once. After it finishes, use ./rebuild.sh for every later change.
+# Run this once. After it finishes, use `rebuild` for later changes.
 set -euo pipefail
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"

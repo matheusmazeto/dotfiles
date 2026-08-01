@@ -60,6 +60,22 @@ cd ~/Documents/github/dotfiles
 O script instala o Determinate Nix, cria `~/.dotfiles`, confirma o usuário do
 macOS e aplica a configuração. Autorize o uso de `sudo` quando solicitado.
 
+Depois que o bootstrap terminar, abra um novo terminal. Para aplicar alterações
+futuras de qualquer pasta, use:
+
+```sh
+rebuild
+```
+
+A função executa `~/.dotfiles/rebuild.sh` e inicia um novo shell somente depois
+que o rebuild termina com sucesso. Se o comando ainda não existir na sessão
+atual, execute uma vez:
+
+```sh
+~/.dotfiles/rebuild.sh
+exec zsh
+```
+
 O rebuild remove pacotes e aplicativos do Homebrew que não estejam declarados
 em `modules/darwin/homebrew.nix`.
 
@@ -157,6 +173,9 @@ cd ~/Documents/github/dotfiles
 ## Aplicar alterações futuras
 
 ```sh
-cd ~/.dotfiles
-./rebuild.sh
+rebuild
 ```
+
+O script `rebuild.sh` já é versionado com permissão de execução. Ele mantém
+`~/.dotfiles` apontando para este repositório e aplica a configuração do
+nix-darwin e do Home Manager. Não é necessário executar `chmod` manualmente.
