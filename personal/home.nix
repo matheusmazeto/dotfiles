@@ -2,14 +2,14 @@
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
-  ai = "${dotfiles}/ai";
+  ai = "${dotfiles}/personal/ai";
 in
 
 {
   # AI instructions and skills are personal in this repository. The future
   # work repository can omit this module or provide its own version.
   home.file.".claude/settings.json".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/home/.claude/settings.json";
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/personal/home/.claude/settings.json";
 
   home.file.".claude/CLAUDE.md".source =
     config.lib.file.mkOutOfStoreSymlink "${ai}/AGENTS.md";

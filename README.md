@@ -16,7 +16,7 @@ personal/        composição específica deste computador pessoal
 modules/darwin/  módulos de macOS, Homebrew e ativação
 modules/home/    módulos de shell, desenvolvimento e Git
 home/            arquivos de configuração editáveis
-ai/              instruções e skills pessoais para ferramentas de IA
+personal/ai/     instruções e skills pessoais para ferramentas de IA
 ```
 
 O `flake.nix` expõe o host `personal`. A base comum fica em `common/` e o
