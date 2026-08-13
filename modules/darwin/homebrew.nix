@@ -23,6 +23,7 @@
       "chatgpt"
       "bitwarden"
       "raycast"
+      "opensuperwhisper"
       "discord"
     ];
   };

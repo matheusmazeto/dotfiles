@@ -79,6 +79,57 @@ exec zsh
 O rebuild remove pacotes e aplicativos do Homebrew que não estejam declarados
 em `modules/darwin/homebrew.nix`.
 
+### Ditado global com OpenSuperWhisper
+
+O OpenSuperWhisper transforma voz em texto no aplicativo que estiver em foco,
+incluindo terminal, VS Code, navegador, Slack e ChatGPT. Ele é instalado e
+mantido pelo Homebrew junto com o restante da configuração.
+
+Depois de aplicar o `rebuild`:
+
+1. Abra o OpenSuperWhisper pelo Launchpad ou pela busca do macOS.
+2. Autorize o microfone e a acessibilidade quando o macOS solicitar.
+3. Baixe o modelo local `Parakeet v3`.
+4. Escolha `Português` como idioma principal. Use `Auto Detect` apenas se
+   alternar frequentemente entre gravações inteiras em português e inglês.
+5. Selecione o modo `Hold to record`.
+6. Configure `Right Option` como atalho de gravação.
+7. Em `Initial prompt` ou no dicionário personalizado, adicione termos que
+   aparecem nos seus prompts, por exemplo: `Claude Code, Codex, OpenCode,
+   OpenSuperWhisper, WezTerm, nix-darwin, Home Manager, Homebrew, useEffect,
+   TypeScript, React`.
+
+O `Parakeet v3` é a opção rápida para o uso diário e suporta português e
+inglês. Se a precisão dos nomes técnicos não for suficiente, baixe também o
+`Whisper V3 Large` e compare. Ele tende a ser mais preciso, mas pode ser mais
+lento e consumir mais memória. O `Parakeet v2` não é recomendado porque é
+focado em inglês.
+
+O OpenSuperWhisper usa modelos locais. Não é necessário configurar uma chave da
+OpenAI nem uma API: o aplicativo faz a transcrição no Mac. O nome Whisper se
+refere à tecnologia de reconhecimento de voz, não a uma dependência da API da
+OpenAI.
+
+8. Teste em um campo simples do TextEdit antes de usar no terminal. Se a
+   gravação funcionar mas o texto não aparecer, confirme `System Settings >
+   Privacy & Security > Accessibility` e ative o OpenSuperWhisper. Verifique
+   também `Input Monitoring`, se o aplicativo estiver listado, e reinicie o
+   OpenSuperWhisper depois de alterar as permissões.
+
+`Right Option` é a recomendação inicial porque deixa `Command-Space` livre para
+o Raycast e não disputa os atalhos de entrada de texto que já estão configurados
+no macOS. Segure a tecla enquanto fala e solte para inserir o texto no cursor.
+Se o layout do teclado atribuir caracteres especiais ao `Right Option`, use
+`Right Control` como segunda opção.
+
+O processamento local é o padrão, mas o aplicativo ainda precisa das
+permissões de microfone e acessibilidade para capturar a fala e inserir o texto.
+
+Se o texto for transcrito mas não for inserido automaticamente, pressione
+`Command-V` em um campo de texto para testar se ele foi copiado para o
+clipboard. Isso diferencia um problema de transcrição de um problema de
+permissão ou auto-paste.
+
 Se o bootstrap falhar durante a instalação do Nix, consulte
 [Troubleshooting do bootstrap](#troubleshooting-do-bootstrap).
 
