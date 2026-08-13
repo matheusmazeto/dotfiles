@@ -16,13 +16,13 @@
 
   outputs = inputs@{ self, nix-darwin, nix-homebrew, home-manager, nixpkgs }:
     let
-      # The one username line to change if this isn't your machine.
-      # bootstrap.sh offers to rewrite this for you if your macOS username differs.
-      user = "th3g3ntl3man";
+      user = builtins.getEnv "DOTFILES_USER";
+      gitName = builtins.getEnv "DOTFILES_GIT_NAME";
+      gitEmail = builtins.getEnv "DOTFILES_GIT_EMAIL";
     in
     {
-      darwinConfigurations."mac" = nix-darwin.lib.darwinSystem {
-        specialArgs = { inherit user; };
+      darwinConfigurations."personal" = nix-darwin.lib.darwinSystem {
+        specialArgs = { inherit user gitName gitEmail; };
         modules = [
           ./configuration.nix
           nix-homebrew.darwinModules.nix-homebrew
@@ -30,7 +30,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit user; };
+            home-manager.extraSpecialArgs = { inherit user gitName gitEmail; };
             home-manager.users.${user} = import ./home.nix;
           }
         ];

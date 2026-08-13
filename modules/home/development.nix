@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, gitName, gitEmail, ... }:
 
 {
   home.packages = with pkgs; [
@@ -55,8 +55,8 @@
   programs.git = {
     enable = true;
     settings.user = {
-      name = "Matheus Mazeto";
-      email = "mgmazeto@gmail.com";
+      name = gitName;
+      email = gitEmail;
     };
   };
 
