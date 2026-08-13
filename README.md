@@ -11,15 +11,23 @@ gerado pelo bootstrap.
 ## Organização
 
 ```text
-modules/darwin/  configurações do macOS, Homebrew e ativação
-modules/home/    shell, ferramentas, Git, SSH e arquivos do usuário
+common/          composição da base reutilizável
+personal/        composição específica deste computador pessoal
+modules/darwin/  módulos de macOS, Homebrew e ativação
+modules/home/    módulos de shell, desenvolvimento e Git
 home/            arquivos de configuração editáveis
-ai/              instruções e skills compartilháveis para ferramentas de IA
+ai/              instruções e skills pessoais para ferramentas de IA
 ```
 
-O `flake.nix` expõe o host `personal`. Uma futura configuração de trabalho
-pode usar este mesmo modelo com outro repositório e outro host, sem precisar
-levar configurações pessoais para o computador da empresa.
+O `flake.nix` expõe o host `personal`. A base comum fica em `common/` e o
+perfil deste repositório fica em `personal/`. O futuro repositório de trabalho
+terá a mesma organização, mas com `work/` no lugar de `personal/`.
+
+Os dois repositórios serão independentes. Quando uma melhoria comum for
+testada neste repositório e também fizer sentido no trabalho, ela será
+replicada manualmente no `common/` do repositório de trabalho. Essa duplicação
+é intencional para evitar uma dependência do ambiente pessoal no computador da
+empresa.
 
 ## Requisitos
 
@@ -124,7 +132,8 @@ nunca devem ser armazenadas neste repositório.
 
 ## Homebrew
 
-Os aplicativos e fórmulas são declarados em `modules/darwin/homebrew.nix`.
+Os aplicativos e fórmulas deste perfil são declarados em
+`modules/darwin/homebrew.nix`, carregado pela camada `personal/`.
 Este perfil usa limpeza declarativa (`cleanup = "zap"`): aplicativos Homebrew
 que não estiverem declarados podem ser removidos durante o rebuild.
 

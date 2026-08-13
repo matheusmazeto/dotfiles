@@ -2,9 +2,8 @@
 
 {
   imports = [
-    ./modules/home/development.nix
-    ./modules/home/shell.nix
-    ./modules/home/files.nix
+    ./common/home.nix
+    ./personal/home.nix
   ];
 
   home.username = user;
