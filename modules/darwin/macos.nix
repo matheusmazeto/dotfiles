@@ -40,7 +40,7 @@
         "/System/Applications/App Store.app"
         "/System/Applications/System Settings.app"
         "/Applications/Google Chrome.app"
-        "/Applications/WezTerm.app"
+        "/Applications/Ghostty.app"
         "/Applications/Visual Studio Code.app"
         "/Applications/ChatGPT.app"
       ];
