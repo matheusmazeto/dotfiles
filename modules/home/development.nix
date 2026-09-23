@@ -27,7 +27,7 @@
     rustfmt
     clippy
     nixd
-    nixfmt-rfc-style
+    nixfmt
     shellcheck
     shfmt
     lua-language-server
@@ -38,8 +38,6 @@
     prettier
     astro-language-server
     tailwindcss-language-server
-    # the font everything renders in
-    nerd-fonts.hack
   ];
 
   fonts.fontconfig.enable = true;
@@ -83,6 +81,8 @@
 
   programs.vscode = {
     enable = true;
+    # Homebrew installs the app; Home Manager manages settings and extensions.
+    package = null;
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         mhutchie.git-graph
