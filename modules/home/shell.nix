@@ -3,8 +3,8 @@
 {
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;      # ghost text from history
-    syntaxHighlighting.enable = true;  # commands turn green when valid
+    autosuggestion.enable = true; # ghost text from history
+    syntaxHighlighting.enable = true; # commands turn green when valid
     initContent = ''
       bindkey '^f' autosuggest-accept
 
@@ -21,6 +21,31 @@
         # exec replaces this shell so the updated Zsh configuration is loaded once.
         ~/.dotfiles/rebuild.sh && exec zsh
       }
+
+      # Install and select the default Node LTS version only when requested.
+      nvm-setup() {
+        if ! command -v nvm >/dev/null 2>&1; then
+          echo "NVM is not available. Run rebuild and open a new terminal first." >&2
+          return 1
+        fi
+
+        nvm install --lts && nvm alias default "lts/*" && nvm use default
+      }
+
+      # Run the native AI Memory binary installed outside Homebrew.
+      ai-memory() {
+        local binary="$HOME/Applications/ai-memory/ai-memory"
+        if [ ! -x "$binary" ]; then
+          echo "AI Memory binary not found: $binary" >&2
+          return 1
+        fi
+        "$binary" "$@"
+      }
+
+      ai-memory-project() {
+        "$HOME/.dotfiles/scripts/new-ai-memory-project.sh" "$@"
+      }
+
     '';
     shellAliases = {
       ".." = "cd .."; # Move to the parent directory.
@@ -28,9 +53,7 @@
       h = "herdr"; # Open Herdr.
       q = "exit"; # Exit the current shell.
       cc = "claude"; # Start Claude Code with normal permission checks.
-      ccf = "claude --dangerously-skip-permissions"; # Start Claude Code while bypassing permission checks.
       co = "codex"; # Start Codex with normal permission checks.
-      cof = "codex --full-auto"; # Start Codex in full-auto mode with reduced approval barriers.
 
       # Git inspection
       gs = "git status"; # Show the working tree status.

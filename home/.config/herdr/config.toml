@@ -1,2 +1,3 @@
+onboarding = false
 # Herdr uses its built-in default keymap when no [keys] section is defined.
 # The default prefix is Ctrl+B. See https://herdr.dev/docs/keyboard/

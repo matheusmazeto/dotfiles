@@ -4,6 +4,7 @@
   system.defaults = {
     NSGlobalDomain = {
       AppleInterfaceStyle = "Dark";
+      AppleInterfaceStyleSwitchesAutomatically = false;
       KeyRepeat = 2;          # fast key repeat
       InitialKeyRepeat = 15;  # short delay before repeat
       _HIHideMenuBar = false;  # keep the menu bar visible
@@ -44,10 +45,15 @@
         "/Applications/ChatGPT.app"
       ];
     };
-    finder.FXPreferredViewStyle = "Nlsv";  # list view by default
-    finder.CreateDesktop = false;          # clean desktop
+    finder = {
+      FXPreferredViewStyle = "Nlsv";  # list view by default
+      CreateDesktop = false;           # clean desktop
+      ShowPathbar = true;
+      ShowStatusBar = true;
+    };
     screencapture.target = "clipboard";    # save screenshots to clipboard
     trackpad.Clicking = true;              # tap to click
+    CustomUserPreferences."com.apple.finder".ShowToolbar = true;
   };
 
 }

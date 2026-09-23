@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/.dotfiles";
@@ -11,37 +11,29 @@ in
   home.file.".claude/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${dotfiles}/personal/home/.claude/settings.json";
 
-  home.file.".claude/CLAUDE.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${ai}/AGENTS.md";
-  home.file.".codex/AGENTS.md".source =
-    config.lib.file.mkOutOfStoreSymlink "${ai}/AGENTS.md";
+  home.file.".claude/CLAUDE.md".source = config.lib.file.mkOutOfStoreSymlink "${ai}/AGENTS.md";
+  home.file.".codex/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${ai}/AGENTS.md";
+  home.file.".pi/agent/AGENTS.md".source = config.lib.file.mkOutOfStoreSymlink "${ai}/AGENTS.md";
   home.file.".config/opencode/AGENTS.md".source =
     config.lib.file.mkOutOfStoreSymlink "${ai}/AGENTS.md";
 
-  home.file.".agents/skills".source =
-    config.lib.file.mkOutOfStoreSymlink "${ai}/skills";
-  home.file.".config/opencode/skills".source =
-    config.lib.file.mkOutOfStoreSymlink "${ai}/skills";
-  home.file.".claude/skills".source =
-    config.lib.file.mkOutOfStoreSymlink "${ai}/skills";
+  home.file.".agents/skills".source = config.lib.file.mkOutOfStoreSymlink "${ai}/skills";
+  home.file.".config/opencode/skills".source = config.lib.file.mkOutOfStoreSymlink "${ai}/skills";
+  home.file.".claude/skills".source = config.lib.file.mkOutOfStoreSymlink "${ai}/skills";
 
-  # Existing real Codex skills are preserved. Only missing entries and links
-  # previously managed by this setup are created or refreshed.
-  home.activation.linkPersonalCodexSkills = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    codex_skills_dir="$HOME/.codex/skills"
-    mkdir -p "$codex_skills_dir"
-
-    for skill_dir in "${ai}/skills"/*; do
-      [ -d "$skill_dir" ] || continue
-      skill_name="$(basename "$skill_dir")"
-      target="$codex_skills_dir/$skill_name"
-
-      if [ -e "$target" ] && [ ! -L "$target" ]; then
-        echo "Skipping existing Codex skill: $target"
-        continue
-      fi
-
-      ln -sfn "$skill_dir" "$target"
-    done
-  '';
+  programs.ghostty = {
+    enable = true;
+    # The Ghostty application is installed as a Homebrew cask alongside WezTerm.
+    package = null;
+    enableZshIntegration = true;
+    settings = {
+      theme = "Rose Pine Moon";
+      font-family = "Hack Nerd Font";
+      font-size = 15;
+      window-width = 140;
+      window-height = 40;
+      background-opacity = 0.8;
+      background-blur = 50;
+    };
+  };
 }

@@ -1,8 +1,8 @@
 # Configuração pessoal de IA
 
-Esta pasta contém instruções e skills pessoais para Codex, OpenCode e Claude
-Code. Ela faz parte do perfil pessoal e não deve ser copiada para o repositório
-de trabalho sem revisão.
+Esta pasta contém instruções e skills genéricas para Codex e Pi. O conteúdo é
+público e portátil; não armazene contexto privado, credenciais ou dados de
+sessão aqui. Revise o material antes de replicá-lo em outro repositório.
 
 ## Instruções
 
@@ -10,11 +10,17 @@ de trabalho sem revisão.
 os links esperados:
 
 - `~/.codex/AGENTS.md`;
+- `~/.pi/agent/AGENTS.md`;
 - `~/.config/opencode/AGENTS.md`;
 - `~/.claude/CLAUDE.md`.
 
 ## Skills
 
-As skills ficam em `skills/`, com uma pasta para cada skill e um arquivo
-`SKILL.md` obrigatório. O Home Manager cria links para os diretórios esperados
-pelas ferramentas instaladas nesta máquina.
+Crie cada skill em `skills/nome-da-skill/SKILL.md`. Use o formato portátil da
+especificação Agent Skills e descreva no campo `description` quando a skill
+deve ser usada. O Home Manager expõe a mesma pasta em `~/.agents/skills`, que
+é descoberta pelo Codex e pelo Pi; também mantém os caminhos nativos do Claude
+Code e do OpenCode para uso futuro. Não copie skills para diretórios separados.
+
+`code-review/` é o único exemplo inicial. Adicione novas skills somente quando
+houver um fluxo reutilizável que você queira compartilhar entre agentes.

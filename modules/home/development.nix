@@ -1,18 +1,25 @@
-{ config, pkgs, gitName, gitEmail, ... }:
+{
+  config,
+  pkgs,
+  gitName,
+  gitEmail,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
     # cli i use constantly
-    ripgrep   # fast search
-    fd        # fast find
-    fzf       # fuzzy finder
-    zoxide    # frecency-based directory navigation
-    jq        # json on the command line
+    ripgrep # fast search
+    fd # fast find
+    fzf # fuzzy finder
+    zoxide # frecency-based directory navigation
+    jq # json on the command line
     lazygit
     neovim
     bun
     pnpm
     uv
+    python3
     ruff
     ty
     basedpyright
@@ -83,6 +90,13 @@
         ms-python.python
         ms-toolsai.jupyter
       ];
+      userSettings = {
+        "editor.fontFamily" = "Hack Nerd Font";
+        "editor.fontSize" = 14;
+        "editor.formatOnSave" = true;
+        "terminal.integrated.defaultProfile.osx" = "zsh";
+        "workbench.browser.openLocalhostLinks" = false;
+      };
     };
   };
 }

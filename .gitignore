@@ -2,6 +2,11 @@
 home/.config/herdr/*.log
 home/.config/herdr/session.json
 home/.config/herdr/*.sock
+home/.config/herdr/sessions/
+home/.config/herdr/release-notes.json
+
+# editor runtime logs
+nvim.log
 
 # macOS + nix build noise
 .DS_Store
