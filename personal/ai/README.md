@@ -30,5 +30,6 @@ deve ser usada. O Home Manager expõe a mesma pasta em `~/.agents/skills`, que
 é descoberta pelo Codex e pelo Pi; também mantém os caminhos nativos do Claude
 Code e do OpenCode para uso futuro. Não copie skills para diretórios separados.
 
-`code-review/` é o único exemplo inicial. Adicione novas skills somente quando
-houver um fluxo reutilizável que você queira compartilhar entre agentes.
+`code-review/` revisa mudanças de código. `tutor/` conduz estudos com quiz no
+chat e progresso em Markdown. Adicione novas skills somente quando houver um
+fluxo reutilizável que você queira compartilhar entre agentes.
